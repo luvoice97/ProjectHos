@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MonoRecipe/src/main/java/mapper/userMapper.xml -->
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user.dao.UserDAO">
+
+
+	<select id="getExistId" parameterType="String" resultType="userDTO">
+		select * from user_tb where uid=#{uid}
+	</select>
+	
+<insert id="write" parameterType="String">
+    INSERT INTO patients_tb (name) 
+    VALUES (#{name})
+</insert>
+
+<select id="login" parameterType="user.bean.UserDTO" resultType="user.bean.UserDTO">
+    SELECT * FROM user_tb WHERE uemail = #{uemail} AND upwd = #{upwd}
+</select>
+
+
+<select id="naverLogin" parameterType="map" resultType="user.bean.UserDTO">
+    SELECT * FROM user_tb WHERE uemail = #{uemail} AND uid = #{uid} AND uname = #{uname}
+</select>
+
+	<select id="getMember" parameterType="String" resultType="user.bean.UserDTO">
+		select * from user_tb where uemail=#{uemail}
+	</select>
+	
+	
+	<update id="update" parameterType="user.bean.UserDTO">
+		update user_tb set uname=#{uname}, upwd=#{upwd}, uemail=#{uemail} where uid=#{uid}
+	</update>	
+	
+    <delete id="delete" parameterType="user.bean.UserDTO">
+		delete from user_tb WHERE uemail = #{uemail} AND upwd = #{upwd}
+	</delete>
+
+
+	
+	<select id="list" resultType="user.bean.UserDTO">
+		select * from user_tb limit #{startNum}, #{endNum}
+	</select>
+	
+	<select id="getTotalA" resultType="int">
+		select count(*) from user_tb
+	</select>
+	
+
+
+
+	
+
+	
+</mapper>
