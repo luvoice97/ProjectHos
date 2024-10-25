@@ -13,6 +13,11 @@ public class HomeController {
 	    return "/index"; // /WEB-INF/index.jsp
 	}
 	
+	@RequestMapping(value="/patient")
+	public String patient(Model model) {
+	    return "/patient"; 
+	}
+	
 }
 
 

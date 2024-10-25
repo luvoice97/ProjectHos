@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO {
-	private int code;
+	private int seq;
 	private String name;
 }

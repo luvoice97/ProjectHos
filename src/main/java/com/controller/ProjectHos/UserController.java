@@ -45,6 +45,15 @@ public class UserController {
 	 * @ResponseBody public List<UserDTO> getPatients() { return
 	 * userService.getPatients(); }
 	 */
+	
+    // 환자 추가
+	@PostMapping("/user/patients/list")
+	@ResponseBody
+	public List<UserDTO> listPatient() {
+	    Map<String, Integer> map = new HashMap<>();
+	    List<UserDTO> userDTO = userService.getList(map);
+	    return userDTO; // JSON 형식으로 자동 변환되어 반환됨
+	}
 
     // 환자 추가
     @PostMapping("/user/patients/add")
@@ -54,7 +63,39 @@ public class UserController {
         userService.write(name);
         return "환자가 성공적으로 추가되었습니다!";
     }
+    
+    @PostMapping("/user/patients/call")
+    @ResponseBody
+    public UserDTO callPatient(@RequestParam("seq") int seq ,@RequestParam("name") String name,HttpSession session) {
+    	UserDTO userDTO = new UserDTO(); 
+    	userDTO.setName(name);
+    	userDTO.setSeq(seq);
+    	System.out.println(name+seq);
+    	session.setAttribute("userDTO", userDTO);
+    	userService.deletePatient(seq);
+        return userDTO; 
+    }
 
+    @PostMapping("/user/patients/delete")
+    @ResponseBody
+    public String deletePatient(@RequestParam int seq) {
+    	   userService.deletePatient(seq);
+    	 return"success";
+    }
+    
+    @PostMapping("/user/patients/checkUserDTO")
+    @ResponseBody
+    public UserDTO checkUserDTO(HttpSession session) {
+        return (UserDTO) session.getAttribute("userDTO");
+    }
+    
+    @PostMapping("/user/patients/clearSession")
+    @ResponseBody
+    public void clearSession(HttpSession session) {
+        session.removeAttribute("userDTO"); // 세션에서 userDTO 제거
+    }
+
+    
 	/*
 	 * // 환자 호출
 	 * 

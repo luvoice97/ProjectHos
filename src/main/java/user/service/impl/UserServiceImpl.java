@@ -89,4 +89,19 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public List<UserDTO> getList(Map<String, Integer> map) {
+	    return userDAO.getList(map);
+	}
+
+
+
+	@Override
+	public void deletePatient(int seq) {
+		userDAO.deletePatient(seq);
+		
+	}
+
+
+
 }

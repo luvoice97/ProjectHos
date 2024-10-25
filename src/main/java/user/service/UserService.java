@@ -1,5 +1,6 @@
 package user.service;
 
+import java.util.List;
 import java.util.Map;
 
 import user.bean.UserDTO;
@@ -22,6 +23,10 @@ public interface UserService {
 
 
 	UserDTO naverLogin(Map<String, Object> map);
+
+	List<UserDTO> getList(Map<String, Integer> map);
+
+	void deletePatient(int seq);
 
 
 

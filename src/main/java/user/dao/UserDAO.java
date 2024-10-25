@@ -28,4 +28,8 @@ public interface UserDAO {
 
 	void write(String name);
 
+	List<UserDTO> getList(Map<String, Integer> map);
+
+	void deletePatient(int seq);
+
 }

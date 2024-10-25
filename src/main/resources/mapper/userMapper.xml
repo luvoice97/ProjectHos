@@ -16,6 +16,16 @@
     VALUES (#{name})
 </insert>
 
+	
+	<select id="getList" resultType="user.bean.UserDTO">
+		select * from patients_tb 
+	</select>
+	
+	  <delete id="deletePatient" parameterType="int">
+		delete from patients_tb  WHERE seq=#{seq}
+	</delete>
+	
+
 <select id="login" parameterType="user.bean.UserDTO" resultType="user.bean.UserDTO">
     SELECT * FROM user_tb WHERE uemail = #{uemail} AND upwd = #{upwd}
 </select>
@@ -34,15 +44,9 @@
 		update user_tb set uname=#{uname}, upwd=#{upwd}, uemail=#{uemail} where uid=#{uid}
 	</update>	
 	
-    <delete id="delete" parameterType="user.bean.UserDTO">
-		delete from user_tb WHERE uemail = #{uemail} AND upwd = #{upwd}
-	</delete>
 
 
-	
-	<select id="list" resultType="user.bean.UserDTO">
-		select * from user_tb limit #{startNum}, #{endNum}
-	</select>
+
 	
 	<select id="getTotalA" resultType="int">
 		select count(*) from user_tb
