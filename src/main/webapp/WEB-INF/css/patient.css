@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+}
+
+#currentPatient {
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    background-color: hotpink;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom:20px;
+}
+
+.section {
+    flex: 1;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+
+h2,#patientCount {
+    font-size: 2em; /* h2 요소 텍스트 크기 */
+    text-align: center; /* 중앙 정렬 */
+    margin-bottom: 15px;
+    font-weight:bold;
+}
+
+
+.patient-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.patient-item {
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 2em;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: skyblue;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    height: 50%;
+    max-height: 80%;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: auto;
+}
+
+.modal-content h2 {
+    font-size: 6em;
+    margin: 0;
+}
+
+.modal-content p {
+    font-size: 6em;
+    margin: 0;
+}
+
+.close {
+    font-size: 2em;
+        align-items: right;
+    text-align: right;
+}
