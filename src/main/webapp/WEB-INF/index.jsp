@@ -52,7 +52,7 @@
         $(document).ready(function() {
             // 환자 호출 페이지 열기
             $('#openCallPageButton').click(function() {
-                var callPageUrl = 'http://localhost:8080/ProjectHos/patient';
+                var callPageUrl = '/ProjectHos/patient';
                 window.open(callPageUrl, '_blank');
             });
 
