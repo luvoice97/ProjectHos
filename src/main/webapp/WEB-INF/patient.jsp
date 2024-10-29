@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>병원 호출 프로그램(환자화면)</h1>
+        <h1>수지정형외과</h1>
     </header>
 
     <div class="container">
