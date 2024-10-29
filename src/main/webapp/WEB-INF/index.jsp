@@ -116,7 +116,6 @@
             function callPatient(patient) {
                 $('#currentPatient').text(patient.name); // 호출된 환자 이름 표시
                 $('#modalTitle').text(patient.name + " 호출 중");
-                $('#myModal').show(); // 모달 표시
 
                 $.ajax({
                     url: 'user/patients/call', // 호출 API 엔드포인트

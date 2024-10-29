@@ -3,17 +3,19 @@ body {
     background-color: #f0f8ff;
     margin: 0;
     padding: 20px;
+    background-image: url('../image/spring.jpg');
 }
 
 #currentPatient {
-    font-size: 3em;
-    font-weight: bold;
-    text-align: center;
-    background-color: hotpink;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    font-size: 4em; /* 호출 중인 환자 텍스트 크기 */
+    font-weight: bold; /* 굵게 표시 */
+    text-align: center; /* 중앙 정렬 */
+    background: linear-gradient(135deg, hotpink, #ff7f50); /* 핑크색 그라데이션 */
+    -webkit-background-clip: text; /* 텍스트에 그라데이션 클리핑 */
+    -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 8px; /* 네모난 컨테이너 박스 */
+    margin-top: 20px; /* 상단 여백 */
 }
 
 .container {
@@ -25,32 +27,33 @@ body {
 }
 
 header {
-    background-color: #007BFF;
+    background: linear-gradient(135deg, hotpink, #ff7f50); /* 핑크색 그라데이션 */
     color: white;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom:20px;
+    margin-bottom: 10px;
 }
 
 .section {
     flex: 1;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* 반투명 배경 */
     margin: 0 10px;
     border-radius: 10px;
 }
 
-
-h2,#patientCount {
+h2, #patientCount {
     font-size: 2em; /* h2 요소 텍스트 크기 */
     text-align: center; /* 중앙 정렬 */
     margin-bottom: 15px;
-    font-weight:bold;
+    font-weight: bold;
+    background: linear-gradient(135deg, hotpink, #ff7f50); /* 핑크색 그라데이션 */
+    -webkit-background-clip: text; /* 텍스트에 그라데이션 클리핑 */
+    -webkit-text-fill-color: transparent; /* 텍스트 색상 투명하게 */
 }
-
 
 .patient-list {
     list-style: none;
@@ -61,7 +64,7 @@ h2,#patientCount {
 
 .patient-item {
     padding: 10px;
-    background-color: lightgray;
+    background-color: rgba(255, 182, 193, 0.8); /* 연한 핑크색, 투명도 추가 */
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
@@ -83,7 +86,7 @@ h2,#patientCount {
 }
 
 .modal-content {
-    background-color: skyblue;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -103,18 +106,14 @@ h2,#patientCount {
     overflow: auto;
 }
 
-.modal-content h2 {
-    font-size: 6em;
-    margin: 0;
-}
-
+.modal-content h2,
 .modal-content p {
     font-size: 6em;
     margin: 0;
+    color: black;!important; /* 글씨 색상을 검정색으로 설정 */
 }
 
 .close {
     font-size: 2em;
-        align-items: right;
     text-align: right;
 }

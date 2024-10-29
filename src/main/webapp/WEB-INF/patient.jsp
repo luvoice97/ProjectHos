@@ -14,7 +14,7 @@
 
     <div class="container">
         <div class="section">
-            <h2>현재 호출 중인 환자</h2>
+            <h2>현재  진료 중인 환자</h2>
             <div id="currentPatient" class="currentPatient"></div>
         </div>
         
