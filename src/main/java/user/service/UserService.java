@@ -28,6 +28,8 @@ public interface UserService {
 
 	void deletePatient(int seq);
 
+	void naverTTS(String text);
+
 
 
 

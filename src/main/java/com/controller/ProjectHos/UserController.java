@@ -37,14 +37,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	/*
-	 * // 모든 사용자(환자) 목록 반환
-	 * 
-	 * @GetMapping("/patients")
-	 * 
-	 * @ResponseBody public List<UserDTO> getPatients() { return
-	 * userService.getPatients(); }
-	 */
 	
     // 환자 추가
 	@PostMapping("/user/patients/list")
@@ -94,41 +86,7 @@ public class UserController {
     public void clearSession(HttpSession session) {
         session.removeAttribute("userDTO"); // 세션에서 userDTO 제거
     }
-
     
-	/*
-	 * // 환자 호출
-	 * 
-	 * @PostMapping("/patients/call")
-	 * 
-	 * @ResponseBody public String callPatient() { String calledPatient =
-	 * userService.callPatient(); return calledPatient != null ? "호출된 환자: " +
-	 * calledPatient : "대기 중인 환자가 없습니다."; }
-	 * 
-	 * // 우선 환자 호출
-	 * 
-	 * @PostMapping("/patients/priorityCall")
-	 * 
-	 * @ResponseBody public String priorityCallPatient(@RequestParam("priorityName")
-	 * String priorityName) { boolean isCalled =
-	 * userService.priorityCallPatient(priorityName); return isCalled ?
-	 * "우선 호출된 환자: " + priorityName : "해당 환자는 대기열에 없습니다."; }
-	 * 
-	 * // 환자 대기열에서 삭제
-	 * 
-	 * @PostMapping("/patients/delete")
-	 * 
-	 * @ResponseBody public String deletePatient(@RequestParam("deleteName") String
-	 * deleteName) { boolean isDeleted = userService.deletePatient(deleteName);
-	 * return isDeleted ? deleteName + " 환자가 대기열에서 삭제되었습니다." : "해당 환자는 대기열에 없습니다.";
-	 * }
-	 */
-	
-	
-	@RequestMapping(value="/user/signIn", method = RequestMethod.GET)
-	public String userSignIn() {
-		return "/user/userSignIn";
-	}
 	
 	@RequestMapping(value="/user/login")
 	public String login(@ModelAttribute UserDTO userDTO, Model model,HttpSession session) {	
@@ -143,6 +101,11 @@ public class UserController {
 	    return "redirect:/";// /WEB-INF/index.jsp
 	}
 	
+	@RequestMapping("/user/naverTTS")
+	@ResponseBody
+	public void naverTTS(@RequestParam(value = "text", defaultValue = "안녕하세요 네이버 TTS입니다") String text) {
+	    userService.naverTTS(text+"님 진료실로 들어오세요");
+	}
 
 
 	

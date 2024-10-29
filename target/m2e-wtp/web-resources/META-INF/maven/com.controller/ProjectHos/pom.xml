@@ -252,7 +252,20 @@
 <artifactId>spring-context-support</artifactId>
 <version>${org.springframework-version}</version>
 </dependency>
-		
+
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-base</artifactId>
+        <version>20.0.2</version>
+    </dependency>
+
+
+<dependency>
+    <groupId>javazoom</groupId>
+    <artifactId>jlayer</artifactId>
+    <version>1.0.1</version>
+</dependency>
+
 		
 	
 		<!-- Test -->
@@ -300,6 +313,7 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            
         </plugins>
     </build>
 </project>
