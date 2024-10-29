@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, inital-scale=1.0">
     <meta charset="UTF-8">
+
     <title>관리자 화면</title>
 	   <link rel="stylesheet" href="./css/index.css">
 
