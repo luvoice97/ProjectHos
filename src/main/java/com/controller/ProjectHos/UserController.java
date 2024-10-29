@@ -103,8 +103,10 @@ public class UserController {
 	
 	@RequestMapping("/user/naverTTS")
 	@ResponseBody
-	public void naverTTS(@RequestParam(value = "text", defaultValue = "안녕하세요 네이버 TTS입니다") String text) {
-	    userService.naverTTS(text+"님 진료실로 들어오세요");
+	public String naverTTS(@RequestParam(value = "text", defaultValue = "안녕하세요 네이버 TTS입니다") String text) {
+	    String completeText = text + "님 진료실로 들어오세요";
+	    String fileUrl = userService.naverTTS(completeText);
+	    return fileUrl; 
 	}
 
 

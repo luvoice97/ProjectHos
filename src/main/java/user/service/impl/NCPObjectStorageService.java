@@ -1,9 +1,11 @@
 package user.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,68 +19,46 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import spring.conf.NaverConfiguration;
-import user.service.ObjectStorageService;
 
 @Service
-public class NCPObjectStorageService implements ObjectStorageService {
-	final AmazonS3 s3;
-	
-	public NCPObjectStorageService(NaverConfiguration naverConfiguration) {
-		s3 = AmazonS3ClientBuilder
-				.standard()
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-						naverConfiguration.getEndPoint(), 
-						naverConfiguration.getRegionName())
-				)
-				.withCredentials(new AWSStaticCredentialsProvider(
-						new BasicAWSCredentials(
-								naverConfiguration.getAccessKey(),
-								naverConfiguration.getSecretKey())
-						)
-				)
-				.build();		
-	}
-	
-	   @Override
-	   public String uploadFile(String bucketName, String directoryPath, MultipartFile img) {
-	      try(InputStream inputStream = img.getInputStream()){         
-	         String imageFileName = UUID.randomUUID().toString();
-	         
-	         ObjectMetadata objectMetadata = new ObjectMetadata();
-	         objectMetadata.setContentType(img.getContentType());
-	         
-	         PutObjectRequest putObjectRequest =
-	               new PutObjectRequest(bucketName,
-	                               directoryPath + imageFileName,
-	                               inputStream,
-	                               objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
-	         
-	         s3.putObject(putObjectRequest);
-	         
-	         return imageFileName;
-	      }catch (Exception e) {
-	         throw new RuntimeException("파일 업로드 에러" + e);
-	      }
+public class NCPObjectStorageService {
+    final AmazonS3 s3;
 
-	   }
+    @Autowired
+    public NCPObjectStorageService(NaverConfiguration naverConfiguration) {
+        s3 = AmazonS3ClientBuilder
+                .standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
+                        naverConfiguration.getEndPoint(), 
+                        naverConfiguration.getRegionName()))
+                .withCredentials(new AWSStaticCredentialsProvider(
+                        new BasicAWSCredentials(
+                                naverConfiguration.getAccessKey(),
+                                naverConfiguration.getSecretKey())))
+                .build();        
+    }
 
-	@Override
-	public void deleteFile(String bucketName, String directoryPath, String imageFileName) {
-	    try {
-	        s3.deleteObject(bucketName, directoryPath + imageFileName);
-	    } catch (Exception e) {
-	        e.printStackTrace(); 
-	    }
-	}
+    public String uploadMp3File(String bucketName, String directoryPath, File mp3File) {
+        try (InputStream inputStream = new FileInputStream(mp3File)) {
+            String mp3FileName = UUID.randomUUID().toString() + ".mp3";
+            
+            ObjectMetadata objectMetadata = new ObjectMetadata();
+            objectMetadata.setContentType("audio/mpeg");
 
-	@Override
-	public void deleteFile(String bucketName, String directoryPath, List<String> list) {
-		for (String imageFileName: list) {
-			s3.deleteObject(bucketName, directoryPath + imageFileName);
-		}
-	}
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName,
+                    directoryPath + mp3FileName,
+                    inputStream,
+                    objectMetadata)
+                    .withCannedAcl(CannedAccessControlList.PublicRead);
 
+            s3.putObject(putObjectRequest);
+            return mp3FileName;
+        } catch (Exception e) {
+            throw new RuntimeException("파일 업로드 에러: " + e.getMessage(), e);
+        }
+    }
 
-		
-	
+    public String getFileUrl(String bucketName, String objectKey) {
+        return s3.getUrl(bucketName, objectKey).toString();
+    }
 }
