@@ -129,8 +129,8 @@ h2, #patientCount {
     }
     
         .modal-content {
-        width: 70%; /* 전체 폭 */
-        height: 40%; /* 전체 높이 */
+        width: 80%; /* 전체 폭 */
+        height: 50%; /* 전체 높이 */
         max-height: none; /* 최대 높이 제한 해제 */
         border-radius: 0; /* 모서리 둥글기 제거 */
         padding: 10px; /* 내부 여백 */
@@ -138,7 +138,7 @@ h2, #patientCount {
 
     .modal-content h2,
     .modal-content p {
-        font-size: 1em; /* 모바일에서의 폰트 크기 조정 */
+        font-size: 2em; /* 모바일에서의 폰트 크기 조정 */
     }
 
     .close {
