@@ -75,7 +75,7 @@ public class UserController {
     	 return"success";
     }
     
-    @PostMapping("/user/patients/checkUserDTO")
+    @PostMapping(value="/user/patients/checkUserDTO",produces = "text/plain; charset=UTF-8")
     @ResponseBody
     public String checkUserDTO(HttpSession session) {
     	
@@ -86,7 +86,7 @@ public class UserController {
         return null; 
     }
     
-    @PostMapping("/user/patients/CheckCurrent")
+    @PostMapping(value = "/user/patients/CheckCurrent", produces = "text/plain; charset=UTF-8")
     @ResponseBody
     public String CheckCurrent(HttpSession session) {
         UserDTO userDTO =userService.GetTempMember();
