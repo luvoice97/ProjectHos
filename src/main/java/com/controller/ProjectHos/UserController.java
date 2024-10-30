@@ -62,6 +62,7 @@ public class UserController {
     	Map<String,Object> map =new HashMap<>();
     	map.put("seq", seq);
     	map.put("name", name);
+    	userService.DeleteTempMember();
     	userService.TempMember(map);
     	System.out.println(name+seq);
     	userService.deletePatient(seq);
@@ -77,6 +78,7 @@ public class UserController {
     @PostMapping("/user/patients/checkUserDTO")
     @ResponseBody
     public String checkUserDTO(HttpSession session) {
+    	
         UserDTO userDTO =userService.GetTempMember();
         if (userDTO != null) {
             return userDTO.getName(); 

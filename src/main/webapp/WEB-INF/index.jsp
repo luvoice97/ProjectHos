@@ -63,7 +63,7 @@
                 $.ajax({
                     url: 'user/patients/CheckCurrent',
                     method: 'POST',
-                    dataType: 'json',
+                    dataType: 'text',
                     success: function(name) {
                         $('#currentPatient').text(name); // 호출된 환자 이름 표시
                     },
