@@ -75,7 +75,7 @@ public class UserController {
     	 return"success";
     }
     
-    @PostMapping("/user/patients/checkUserName")
+    @PostMapping("/user/patients/checkUserDTO")
     @ResponseBody
     public String checkUserDTO(HttpSession session) {
         UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
