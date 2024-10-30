@@ -48,31 +48,29 @@
                 url: 'user/patients/checkUserDTO',
                 method: 'POST',
                 dataType: 'json',
-                success: function(userDTO) {
-                    if (userDTO) {
+                success: function(name) {
+                    if (name !=null) {
                         $.ajax({
                             url: 'user/naverTTS',
                             method: 'POST',
-                            data: { text: userDTO.name },
-                            dataType: 'text', // Expecting a text response (the URL)
+                            data: { text: name },
+                            dataType: 'text',
                             success: function(fileUrl) {
-                                // Set the audio source to the returned URL for TTS and play it
                                 var ttsSound = document.getElementById('tts');
-                                ttsSound.src = fileUrl; // Set the source to the returned URL
+                                ttsSound.src = fileUrl; 
                                 ttsSound.currentTime = 0;
                                 ttsSound.play().catch(function(error) {
                                     console.error('TTS 소리 재생 중 오류 발생:', error);
                                 });
 
-                                // Play DingDong sound
                                 var dingdongSound = document.getElementById('DingDong');
                                 dingdongSound.currentTime = 0;
                                 dingdongSound.play().catch(function(error) {
                                     console.error('DingDong 소리 재생 중 오류 발생:', error);
                                 });
 
-                                $('#currentPatient').text(userDTO.name);
-                                $('#modalTitle').html(userDTO.name + ' 님<br>진료실로 들어오세요');
+                                $('#currentPatient').text(name);
+                                $('#modalTitle').html(name + ' 님<br>진료실로 들어오세요');
 
                                 setTimeout(function() {
                                     $('#myModal').show();

@@ -75,10 +75,14 @@ public class UserController {
     	 return"success";
     }
     
-    @PostMapping("/user/patients/checkUserDTO")
+    @PostMapping("/user/patients/checkUserName")
     @ResponseBody
-    public UserDTO checkUserDTO(HttpSession session) {
-        return (UserDTO) session.getAttribute("userDTO");
+    public String checkUserDTO(HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+        if (userDTO != null) {
+            return userDTO.getName(); 
+        }
+        return null; 
     }
     
     @PostMapping("/user/patients/clearSession")
