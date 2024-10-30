@@ -26,6 +26,7 @@
             <input type="text" id="patientInput" placeholder="환자 이름 입력" />
             <button id="addPatientBtn">환자 추가</button>
             <button id="openCallPageButton" >호출 페이지 </button>
+            <div id="idDiv"></div>
         </div>
 
         <!-- 오른쪽: 입력한 환자 목록 -->
@@ -95,6 +96,10 @@
             // 환자 추가 버튼 클릭 시 서버로 환자 추가 요청
             $('#addPatientBtn').click(function() {
                 var patientName = $('#patientInput').val();
+                if(!patientName){
+                	$('#idDiv').text("이름을 입력해주세요");
+                	return;
+                }
                 $.ajax({
                     url: 'user/patients/add',
                     method: 'POST',

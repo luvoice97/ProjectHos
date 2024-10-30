@@ -64,6 +64,12 @@ input[type="text"] {
     font-size: 16px;
 }
 
+#idDiv{
+	margin-top:10px;
+	color:red;
+	font-weight: bold; /* 굵게 표시 */
+}
+
 button {
     background: linear-gradient(135deg, #28A745, #6ddc6d); /* 그라데이션 색상 */
     color: white;
