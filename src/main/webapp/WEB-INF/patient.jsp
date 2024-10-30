@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1.0">
     <title>환자 화면</title>
     <link rel="stylesheet" href="./css/patient.css">
 </head>
