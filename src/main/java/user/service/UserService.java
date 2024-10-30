@@ -30,6 +30,12 @@ public interface UserService {
 
 	String naverTTS(String text);
 
+	void TempMember(Map<String, Object> map);
+
+	UserDTO GetTempMember();
+
+	void DeleteTempMember();
+
 
 
 

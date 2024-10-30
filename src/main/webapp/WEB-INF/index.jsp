@@ -57,6 +57,23 @@
                 var callPageUrl = '/ProjectHos/patient';
                 window.open(callPageUrl, '_blank');
             });
+            
+            
+            function CheckCurrentPatient() {
+                $.ajax({
+                    url: 'user/patients/CheckCurrent',
+                    method: 'POST',
+                    dataType: 'json',
+                    success: function(name) {
+                        $('#currentPatient').text(name); // 호출된 환자 이름 표시
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('환자 목록 로드 중 오류 발생:', error);
+                    }
+                });
+            }
+            
+            setInterval(CheckCurrentPatient, 1000);
 
             // 서버로 환자 목록을 주기적으로 요청하는 함수
             function loadPatientList() {
@@ -117,7 +134,6 @@
             // 환자 호출 함수
             function callPatient(patient) {
                 $('#currentPatient').text(patient.name); // 호출된 환자 이름 표시
-                $('#modalTitle').text(patient.name + " 호출 중");
 
                 $.ajax({
                     url: 'user/patients/call', // 호출 API 엔드포인트

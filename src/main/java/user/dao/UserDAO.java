@@ -32,4 +32,10 @@ public interface UserDAO {
 
 	void deletePatient(int seq);
 
+	void TempMember(Map<String, Object> map);
+
+	UserDTO GetTempMember();
+
+	void DeleteTempMember();
+
 }

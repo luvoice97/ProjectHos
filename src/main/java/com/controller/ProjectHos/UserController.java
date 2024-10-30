@@ -58,14 +58,13 @@ public class UserController {
     
     @PostMapping("/user/patients/call")
     @ResponseBody
-    public UserDTO callPatient(@RequestParam("seq") int seq ,@RequestParam("name") String name,HttpSession session) {
-    	UserDTO userDTO = new UserDTO(); 
-    	userDTO.setName(name);
-    	userDTO.setSeq(seq);
+    public void callPatient(@RequestParam("seq") int seq ,@RequestParam("name") String name,HttpSession session) {
+    	Map<String,Object> map =new HashMap<>();
+    	map.put("seq", seq);
+    	map.put("name", name);
+    	userService.TempMember(map);
     	System.out.println(name+seq);
-    	session.setAttribute("userDTO", userDTO);
     	userService.deletePatient(seq);
-        return userDTO; 
     }
 
     @PostMapping("/user/patients/delete")
@@ -78,17 +77,29 @@ public class UserController {
     @PostMapping("/user/patients/checkUserDTO")
     @ResponseBody
     public String checkUserDTO(HttpSession session) {
-        UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+        UserDTO userDTO =userService.GetTempMember();
         if (userDTO != null) {
             return userDTO.getName(); 
         }
         return null; 
     }
     
+    @PostMapping("/user/patients/CheckCurrent")
+    @ResponseBody
+    public String CheckCurrent(HttpSession session) {
+        UserDTO userDTO =userService.GetTempMember();
+        if (userDTO != null) {
+            return userDTO.getName(); 
+        }
+        return null; 
+    }
+    
+
+    
     @PostMapping("/user/patients/clearSession")
     @ResponseBody
-    public void clearSession(HttpSession session) {
-        session.removeAttribute("userDTO"); // 세션에서 userDTO 제거
+    public void clearSession() {
+    	userService.DeleteTempMember();
     }
     
 	

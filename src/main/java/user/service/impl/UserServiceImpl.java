@@ -149,4 +149,21 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Error: " + e.getMessage(), e);
         }
     }
+
+	@Override
+	public void TempMember(Map<String, Object> map) {
+		userDAO.TempMember(map);
+	}
+
+	@Override
+	public UserDTO GetTempMember() {
+		UserDTO userDTO=userDAO.GetTempMember();
+		return userDTO;
+	}
+
+	@Override
+	public void DeleteTempMember() {
+		userDAO.DeleteTempMember();
+	}
+	
 }

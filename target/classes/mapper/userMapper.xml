@@ -25,6 +25,21 @@
 		delete from patients_tb  WHERE seq=#{seq}
 	</delete>
 	
+	<insert id="TempMember" parameterType="MAP">
+    INSERT INTO TempMember (seq,name) VALUES (1,#{name})
+	</insert>
+	
+<select id="GetTempMember" resultType="user.bean.UserDTO">
+    SELECT * FROM TempMember WHERE seq = 1
+</select>
+
+	  <delete id="DeleteTempMember" >
+		delete from TempMember  WHERE seq=1
+	</delete>
+
+
+	
+	
 
 <select id="login" parameterType="user.bean.UserDTO" resultType="user.bean.UserDTO">
     SELECT * FROM user_tb WHERE uemail = #{uemail} AND upwd = #{upwd}
