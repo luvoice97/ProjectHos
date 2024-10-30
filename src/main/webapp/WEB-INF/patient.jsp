@@ -43,22 +43,26 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
-
+        function checkUserDTO() {
             $.ajax({
                 url: 'user/patients/checkUserDTO',
                 method: 'POST',
                 dataType: 'text',
                 success: function(name) {
-                	var currentName=$('#currentPatient').val();
-                	var newName=name;
-                	if(newName ===currentName){
-                		return;
-                	}
-                    if (name !=null) {
+                    var currentName = $('#currentPatient').text(); // 현재 환자 이름 가져오기
+                    var newName = name; // 새로운 환자 이름
+
+                    // 새로운 이름이 현재 이름과 같으면 함수 종료
+                    if (newName === currentName) {
+                        return; // 중복 호출 방지
+                    }
+
+                    // 이후 로직은 새로운 환자 이름인 경우에만 실행됩니다.
+                    if (newName != null) {
                         $.ajax({
                             url: 'user/naverTTS',
                             method: 'POST',
-                            data: { text: name },
+                            data: { text: newName }, // 새로운 이름을 사용
                             dataType: 'text',
                             success: function(fileUrl) {
                                 var ttsSound = document.getElementById('tts');
@@ -74,9 +78,10 @@
                                     console.error('DingDong 소리 재생 중 오류 발생:', error);
                                 });
 
-                                $('#currentPatient').text(name);
-                                $('#modalTitle').html(name + ' 님<br>진료실로 들어오세요');
+                                $('#currentPatient').text(newName); // 현재 환자 이름 업데이트
+                                $('#modalTitle').html(newName + ' 님<br>진료실로 들어오세요');
 
+                                // 모달 표시 및 숨기기
                                 setTimeout(function() {
                                     $('#myModal').show();
                                 }, 1000);
@@ -85,6 +90,7 @@
                                     $('#myModal').hide();
                                 }, 7000);
 
+                                // 세션 정리
                                 $.ajax({
                                     url: 'user/patients/clearSession',
                                     method: 'POST',
@@ -105,7 +111,7 @@
             });
         }
 
-        setInterval(checkUserDTO, 1000);
+        setInterval(checkUserDTO, 1000); 
 
         function loadPatientList() {
             $.ajax({
