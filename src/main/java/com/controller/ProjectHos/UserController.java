@@ -100,8 +100,9 @@ public class UserController {
     
     @PostMapping("/user/patients/clearSession")
     @ResponseBody
-    public void clearSession() {
-    	userService.DeleteTempMember();
+    public String clearSession() {
+//    	userService.DeleteTempMember();
+    	return"1";
     }
     
 	

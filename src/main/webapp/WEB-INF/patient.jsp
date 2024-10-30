@@ -47,8 +47,13 @@
             $.ajax({
                 url: 'user/patients/checkUserDTO',
                 method: 'POST',
-                dataType: 'json',
+                dataType: 'text',
                 success: function(name) {
+                	var currentName=$('#currentPatient').val();
+                	var newName=name;
+                	if(newName ===currentName){
+                		return;
+                	}
                     if (name !=null) {
                         $.ajax({
                             url: 'user/naverTTS',
