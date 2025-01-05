@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>수지정형외과</h1>
+        <h1>정형외과</h1>
     </header>
 
     <div class="container">
